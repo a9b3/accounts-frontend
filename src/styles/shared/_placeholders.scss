@@ -1,0 +1,51 @@
+.fitted {
+  flex-grow: 1;
+  min-height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shadow {
+  box-shadow: 0px 5px 15px rgba(black, 0.4);
+}
+
+.flex-row {
+  display: flex;
+
+  >.end {
+    display: inherit;
+    margin-left: auto;
+  }
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+
+  >.end {
+    display: inherit;
+    margin-top: auto;
+  }
+}
+
+.pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hover {
+  opacity: 1;
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: .8;
+    transition: opacity .2s;
+  }
+}
