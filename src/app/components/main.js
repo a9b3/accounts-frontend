@@ -3,10 +3,15 @@
  * Purpose is to house init logic and top level components (eg. toasts)
  */
 import React, { Component, PropTypes } from 'react'
+import accountsSDK from '../services/accounts-sdk.js'
 
 function init() {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 1000)
+  return new Promise(async (resolve) => {
+    accountsSDK.configure({
+      host: 'http://localhost:8081',
+      domain: '.dev.staging-samlau.us',
+    })
+    resolve()
   })
 }
 
@@ -46,7 +51,6 @@ export default class Main extends Component {
         </div>
       :
         <div>
-          Hello World
           {this.props.children}
         </div>
   }

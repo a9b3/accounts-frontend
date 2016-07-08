@@ -1,0 +1,25 @@
+@import '~styles/shared';
+
+.container {
+  composes: middle page;
+}
+
+.signup {
+
+}
+
+.title {
+
+}
+
+.form {
+  composes: flex-col;
+}
+
+.input {
+
+}
+
+.button {
+
+}
