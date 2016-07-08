@@ -1,8 +1,7 @@
 import styles from './signup.scss'
 import { Link } from 'react-router'
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import CSSModules from 'react-css-modules'
-import axios from 'axios'
 import accountsSDK from '../../services/accounts-sdk.js'
 
 class Signup extends Component {
@@ -28,9 +27,9 @@ class Signup extends Component {
       this.setState({
         loading: false,
       })
-    } catch (e) {
+    } catch (err) {
       this.setState({
-        error: e.data.message,
+        error: err.data.message,
         loading: false,
       })
     }

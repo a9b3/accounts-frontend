@@ -12,11 +12,11 @@ export default (
     path='/'
     component={Main}
   >
-    <IndexRedirect to='signin' />
+    <IndexRedirect to='success' />
     <Route path='signin' component={Signin} />
     <Route path='signup' component={Signup} />
     <Route path='success' component={Success} onEnter={
-      ({location}, replace) => {
+      ({ location }, replace) => {
         accountsSDK.requireAuthentication(location, replace)
       }
     }/>

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import invariant from 'invariant'
+import jwtDecode from 'jwt-decode'
 
 function getQueries() {
   const tokens = window.location.search.slice(1, window.location.search.length).split(`&`)
@@ -111,21 +112,35 @@ class AccountsSDK {
     this._requireConfigured()
     invariant(jwt, `'jwt' must be provided`)
 
-    const res = await axios.post(`${this.host}/api/verify`, { token: jwt })
+    await axios.post(`${this.host}/api/verify`, { token: jwt })
   }
 
   // use with react-router onEnter
-  requireAuthentication = async (location, replace) => {
+  requireAuthentication = async () => {
     this._requireConfigured()
     const jwt = this.getJwt()
     if (!jwt) {
-      this.redirectTo(`${this.authUrl}?origin=${window.location.href}`)
+      this.redirectTo(`${this.authUrl}/signin?origin=${window.location.href}`)
     }
     try {
       await this.verify(jwt)
     } catch (e) {
-      this.redirectTo(`${this.authUrl}?origin=${window.location.href}`)
+      this.redirectTo(`${this.authUrl}/signin?origin=${window.location.href}`)
     }
+  }
+
+  getUser = async () => {
+    this._requireConfigured()
+    const jwt = this.getJwt()
+    const decoded = jwtDecode(jwt)
+
+    const res = await axios.get(`${this.host}/api/getUser?id=${decoded.id}`, {
+      headers: {
+        'session-token': jwt,
+      },
+    })
+
+    return res.data.user
   }
 }
 
