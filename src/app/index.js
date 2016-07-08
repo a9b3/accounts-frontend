@@ -11,6 +11,7 @@ import useScroll from 'scroll-behavior/lib/useStandardScroll'
 import createStore from './store.js'
 import { AppContainer } from 'react-hot-loader'
 import Root from './components/root.js'
+import accountsSDK from './services/accounts-sdk.js'
 
 if (CONFIG.debug === false && navigator.serviceWorker) {
   navigator.serviceWorker.register('/service-worker.js')
@@ -21,6 +22,11 @@ const history = syncHistoryWithStore(
   useScroll(() => browserHistory)(),
   store
 )
+
+accountsSDK.configure({
+  host: 'http://localhost:8081',
+  domain: '.staging-samlau.us',
+})
 
 render(
   <AppContainer>

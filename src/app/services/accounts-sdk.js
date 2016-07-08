@@ -6,7 +6,7 @@ function getQueries() {
   const tokens = window.location.search.slice(1, window.location.search.length).split(`&`)
   return tokens.reduce((map, token) => {
     const kv = token.split('=')
-    map[kv[0]] = kv[1]
+    map[kv[0]] = decodeURIComponent(kv[1])
     return map
   }, {}) || {}
 }
@@ -20,7 +20,7 @@ class AccountsSDK {
   // url of auth frontend eg. 'http://accountsfe.foo.com'
   authUrl = `http://dev.staging-samlau.us:8080`
 
-  _requireConfigured() {
+  _requireConfigured = () => {
     invariant(this.configured, `Call this.configure() first`)
   }
 
@@ -62,14 +62,14 @@ class AccountsSDK {
 
     // redirect to origin if specified
     if (redirect) {
-      this.redirectTo(redirect)
+      return this.redirectTo(redirect)
     }
     const urlQueries = getQueries()
     if (urlQueries.origin) {
-      this.redirectTo(urlQueries.origin)
+      return this.redirectTo(urlQueries.origin)
     }
     // some default location in accountsfrontend maybe a homepage?
-    this.redirectTo(`${window.location.hostname}:${window.location.port}/success`)
+    this.redirectTo(`/success`)
   }
 
   signup = async ({
@@ -118,7 +118,12 @@ class AccountsSDK {
   requireAuthentication = async (location, replace) => {
     this._requireConfigured()
     const jwt = this.getJwt()
-    if (!jwt || !this.verify(jwt)) {
+    if (!jwt) {
+      this.redirectTo(`${this.authUrl}?origin=${window.location.href}`)
+    }
+    try {
+      await this.verify(jwt)
+    } catch (e) {
       this.redirectTo(`${this.authUrl}?origin=${window.location.href}`)
     }
   }

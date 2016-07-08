@@ -2,24 +2,81 @@
 
 .container {
   composes: middle page;
+  background: linear-gradient($blue3 10%, $purple 100%);
 }
 
 .signup {
-
+  composes: flex-col;
+  align-items: center;
 }
 
 .title {
-
+  color: white;
+  font-size: 2em;
+  letter-spacing: .3em;
+  font-weight: 100;
 }
 
 .form {
+  padding: 2em 0;
   composes: flex-col;
+  min-width: 20em;
 }
 
-.input {
+.input, .input:focus {
+  opacity: 0.5;
+  border-bottom: 1px solid white;
+  margin: .5em 0;
+  padding: 1em 0;
+  color: white;
+  transition: opacity 1s;
 
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &::placeholder {
+    color: white;
+    opacity: 0.5;
+  }
+}
+.input:focus {
+  opacity: 1;
+  transition: opacity 1s;
 }
 
 .button {
+  margin-top: 2em;
+  background: rgba(white, .1);
+  border: 1px solid rgba(white, .2);
+  border-radius: 2px;
+  color: white;
+  padding: .5em;
+  transition: all 1s;
+}
+.button:hover, .button:focus {
+  background: rgba(white, .4);
+  transition: all 1s;
+}
 
+.link {
+  padding: 1em;
+  align-self: flex-end;
+
+  a {
+    color: white;
+  }
+}
+
+.error {
+  position: fixed;
+  top: 5em;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  color: white;
+  border: 1px solid $red1;
+  border-radius: 4px;
+  background: rgba($red4, .5);
+  padding: 1em;
 }

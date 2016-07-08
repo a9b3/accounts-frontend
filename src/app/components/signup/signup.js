@@ -3,25 +3,35 @@ import { Link } from 'react-router'
 import React, { Component, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import axios from 'axios'
+import accountsSDK from '../../services/accounts-sdk.js'
 
 class Signup extends Component {
   state = {
     error: undefined,
+    loading: false,
   }
 
   onSubmit = async (e) => {
     e.preventDefault()
+    this.setState({
+      error: undefined,
+      loading: true,
+    })
+
     const email = this.refs.email.value
     const password = this.refs.password.value
 
     try {
-      const res = await axios.post(`${CONFIG.accountsBackend}/api/signup`, {
-        email,
-        password,
+      await accountsSDK.signup({ email, password })
+      this.refs.email.value = ''
+      this.refs.password.value = ''
+      this.setState({
+        loading: false,
       })
     } catch (e) {
       this.setState({
         error: e.data.message,
+        loading: false,
       })
     }
   }
@@ -29,6 +39,7 @@ class Signup extends Component {
   render() {
     const {
       error,
+      loading,
     } = this.state
 
     return <div styleName='container'>
@@ -57,8 +68,15 @@ class Signup extends Component {
             styleName='input'
             placeholder='Password'
           />
+          <input type='password'
+            ref='verifyPassword'
+            styleName='input'
+            placeholder='Verify Password'
+          />
 
-          <button styleName='button'>
+          <button disabled={loading}
+            styleName='button'
+          >
             Submit
           </button>
         </form>
