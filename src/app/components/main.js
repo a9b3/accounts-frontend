@@ -9,7 +9,7 @@ function init() {
   return new Promise(async (resolve) => {
     accountsSDK.configure({
       host: 'http://localhost:8081',
-      domain: '.dev.staging-samlau.us',
+      domain: '.staging-samlau.us',
     })
     resolve()
   })
