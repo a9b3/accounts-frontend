@@ -4,6 +4,19 @@ import React, { Component } from 'react'
 import CSSModules from 'react-css-modules'
 import accountsSDK from '../../services/accounts-sdk.js'
 
+function getErrorMessage(err) {
+  if (err.message && typeof err.message === 'string') {
+    return err.message
+  }
+  if (err.data && err.data.message && typeof err.data.message === 'string') {
+    return err.data.message
+  }
+  if (err.status === 0) {
+    return 'Connection problem try again later.'
+  }
+  return 'Error'
+}
+
 class Signin extends Component {
   state = {
     error: undefined,
@@ -20,6 +33,7 @@ class Signin extends Component {
     const email = this.refs.email.value
     const password = this.refs.password.value
 
+    console.log(accountsSDK)
     try {
       await accountsSDK.authenticate({ email, password })
       this.refs.email.value = ''
@@ -29,7 +43,7 @@ class Signin extends Component {
       })
     } catch (err) {
       this.setState({
-        error: err.data.message || (err.status === 0 ? `Connection problem try again later` : `WTF`),
+        error: getErrorMessage(err),
         loading: false,
       })
     }

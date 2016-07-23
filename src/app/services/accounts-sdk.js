@@ -19,7 +19,7 @@ class AccountsSDK {
   // domain authority of jwt eg. '.foo.com'
   domain = undefined
   // url of auth frontend eg. 'http://accountsfe.foo.com'
-  authUrl = `http://dev.staging-samlau.us:8080`
+  authUrl = undefined
 
   _requireConfigured = () => {
     invariant(this.configured, `Call this.configure() first`)

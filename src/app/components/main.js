@@ -3,14 +3,9 @@
  * Purpose is to house init logic and top level components (eg. toasts)
  */
 import React, { Component, PropTypes } from 'react'
-import accountsSDK from '../services/accounts-sdk.js'
 
 function init() {
   return new Promise(async (resolve) => {
-    accountsSDK.configure({
-      host: 'http://localhost:8081',
-      domain: '.staging-samlau.us',
-    })
     resolve()
   })
 }
