@@ -24,8 +24,9 @@ const history = syncHistoryWithStore(
 )
 
 accountsSDK.configure({
-  host: 'http://localhost:8081',
-  domain: '.staging-samlau.us',
+  host: CONFIG.accountsBackend,
+  domain: CONFIG.domain,
+  authUrl: CONFIG.authUrl,
 })
 
 render(
