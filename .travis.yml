@@ -2,10 +2,14 @@ language: node_js
 node_js:
   - "6.1"
 
-# cache:
-#   bundler: true
-#   directories:
-#     - node_modules
+sudo: required
+
+services:
+  - docker
+
+cache:
+  directories:
+    - node_modules
 
 install:
   - npm install
