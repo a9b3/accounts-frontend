@@ -33,7 +33,6 @@ class Signin extends Component {
     const email = this.refs.email.value
     const password = this.refs.password.value
 
-    console.log(accountsSDK)
     try {
       await accountsSDK.authenticate({ email, password })
       this.refs.email.value = ''
