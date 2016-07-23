@@ -29,7 +29,7 @@ class Signin extends Component {
       })
     } catch (err) {
       this.setState({
-        error: err.data.message,
+        error: err.data.message || (err.status === 0 ? `Connection problem try again later` : `WTF`),
         loading: false,
       })
     }

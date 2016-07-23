@@ -1,8 +1,10 @@
-# react-starter-kit
+# accounts-frontend
 [![Build
-Status](https://travis-ci.org/esayemm/react-starter-kit.svg?branch=master)](https://travis-ci.org/esayemm/react-starter-kit)
+Status](https://travis-ci.org/esayemm/accounts-frontend?branch=master)](https://travis-ci.org/esayemm/accounts-frontend)
 
-A starter kit for frontend project using babel for transpiling es6, webpack for building assets, karma for testing, and a supplied Dockerfile for building a container.
+Simple frontend for [accounts](https://github.com/esayemm/accounts) built in React. Signin/Signup and simple profile page. 
+
+# Development
 
 ##Gulp
 #### `gulp [PORT?=8080]`
@@ -36,12 +38,4 @@ docker build -t <docker username>/<docker hub repo> .
 
 // run docker image
 docker run -d --name <custom name> -p <host port>:80 <docker username>/<docker hub repo>
-```
-
-## Typescript
-
-If you want typescript check out the typescript branch. Not 100% working yet.
-
-```
-git co b typescript
 ```

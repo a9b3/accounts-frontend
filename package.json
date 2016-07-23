@@ -1,7 +1,7 @@
 {
-  "name": "react-starter-kit",
+  "name": "accounts-frontend",
   "version": "0.0.1",
-  "description": "Front-end starter kit with react, webpack, gulp, redux, postcss, babel",
+  "description": "Accounts Frontend",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test karma start --single-run",
@@ -12,7 +12,8 @@
     "preversion": "npm run lint",
     "version": "npm run prerelease && git add .",
     "postversion": "git push && git push --tags",
-    "prerelease": "rm -rf build && npm run build"
+    "prerelease": "rm -rf build && npm run build",
+    "deploy": "./node_modules/kontinuum-deploy/bin/kontinuum_deploy --input ./deploy/accounts-frontend.yaml.tpl --output ./deploy/accounts-frontend.yaml --service account-frontend"
   },
   "pre-commit": [
     "lint:gitadded"
@@ -55,6 +56,7 @@
     "karma-mocha-reporter": "^2.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
+    "kontinuum-deploy": "^0.3.3",
     "mocha": "^2.5.3",
     "node-sass": "3.8.0",
     "postcss-import": "7.1.3",

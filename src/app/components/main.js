@@ -20,15 +20,11 @@ export default class Main extends Component {
     children: PropTypes.node,
   }
 
-  constructor() {
-    super()
-    this.state = {
-      ready: false,
-    }
-    this._init = this._init.bind(this)
+  state = {
+    ready: false,
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     await this._init()
   }
 

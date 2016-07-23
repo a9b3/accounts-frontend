@@ -1,0 +1,47 @@
+@import '~styles/shared';
+
+.container {
+  composes: middle page;
+  background: linear-gradient($blue3 10%, $purple 100%);
+}
+
+.profile {
+  background: white;
+  width: 400px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.banner {
+  height: 250px;
+}
+
+.info {
+  composes: flex-col;
+}
+
+.info-item {
+  composes: flex-row;
+  align-items: center;
+  padding: 1em;
+
+  .type {
+    color: $dark4;
+    padding-right: 1em;
+  }
+
+  .value {
+
+  }
+}
+
+.actions {
+
+}
+
+.action {
+  composes: flex-row;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}

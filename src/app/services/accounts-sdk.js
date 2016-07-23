@@ -70,7 +70,7 @@ class AccountsSDK {
       return this.redirectTo(urlQueries.origin)
     }
     // some default location in accountsfrontend maybe a homepage?
-    this.redirectTo(`/success`)
+    this.redirectTo(`/`)
   }
 
   signup = async ({
@@ -106,6 +106,16 @@ class AccountsSDK {
       tokenExp: res.data.token.tokenExp,
       redirect,
     })
+  }
+
+  logout = async () => {
+    this._requireConfigured()
+
+    await axios.post(`${this.host}/api/logout`, {
+      token: this.getJwt(),
+    })
+
+    this.redirectTo('/')
   }
 
   verify = async (jwt) => {

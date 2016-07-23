@@ -4,7 +4,7 @@ import Main from './components/main.js'
 import NotFoundContainer from './components/not-found/not-found.js'
 import Signin from './components/signin/signin.js'
 import Signup from './components/signup/signup.js'
-import Success from './components/success/success.js'
+import Profile from './components/profile/profile.js'
 import accountsSDK from './services/accounts-sdk.js'
 
 export default (
@@ -12,10 +12,10 @@ export default (
     path='/'
     component={Main}
   >
-    <IndexRedirect to='success' />
+    <IndexRedirect to='profile' />
     <Route path='signin' component={Signin} />
     <Route path='signup' component={Signup} />
-    <Route path='success' component={Success} onEnter={
+    <Route path='profile' component={Profile} onEnter={
       ({ location }, replace) => {
         accountsSDK.requireAuthentication(location, replace)
       }

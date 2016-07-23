@@ -1,4 +1,9 @@
 :global {
+  body {
+    height: 100vh;
+    background: linear-gradient($blue3 10%, $purple 100%);
+  }
+
   .loading {
     position: relative;
     top: 50vh;
