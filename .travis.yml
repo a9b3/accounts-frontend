@@ -22,4 +22,4 @@ script:
   - npm test
 
 after_success:
-  - "test $TRAVIS_BRANCH = "prod" && npm run deploy"
+  - test $TRAVIS_BRANCH = "prod" && npm run deploy
