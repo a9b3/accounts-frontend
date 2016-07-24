@@ -1,7 +1,7 @@
 {
   "name": "accounts-frontend",
   "version": "0.0.1",
-  "description": "Accounts Frontend",
+  "description": "Accounts Frontend.",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test karma start --single-run",
