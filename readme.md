@@ -1,8 +1,7 @@
 # accounts-frontend
-[![Build
-Status](https://travis-ci.org/esayemm/accounts-frontend?branch=master)](https://travis-ci.org/esayemm/accounts-frontend)
+[![Build Status](https://travis-ci.org/esayemm/accounts-frontend.svg?branch=master)](https://travis-ci.org/esayemm/accounts-frontend)
 
-Simple frontend for [accounts](https://github.com/esayemm/accounts) built in React. Signin/Signup and simple profile page. 
+Simple frontend for [accounts](https://github.com/esayemm/accounts) built in React. Signin/Signup and simple profile page.
 
 # Development
 
